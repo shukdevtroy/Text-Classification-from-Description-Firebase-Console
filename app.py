@@ -65,12 +65,12 @@ try:
 except ValueError:
     # If not initialized, initialize it
     cred = credentials.Certificate(
-        'feedback-job-recommendation-firebase-adminsdk-n6zig-3863863b60.json'
+        'put the path of the json file here that you have downloaded after Generating new private key'
     )  # Update path as needed
     firebase_admin.initialize_app(
         cred, {
             'databaseURL':
-            'https://feedback-job-recommendation-default-rtdb.firebaseio.com/'
+            'paste the url here'
         })
 
 feedback_ref = db.reference('/feedback')
