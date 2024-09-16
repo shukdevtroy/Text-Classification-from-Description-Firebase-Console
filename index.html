@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Recommendation System</title>
+    <title>Job Description Recommender</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Job Recommendation System</h1>
+        <h1>Job Description Recommender</h1>
     </header>
     <main>
-        <textarea id="jobDescription" placeholder="Enter job description..."></textarea>
-        <button id="recommendButton">Get Job Recommendation</button>
-        <button id="refreshButton">Refresh</button>
-        <div id="recommendationOutput"></div>
+        <section class="form-section">
+            <textarea id="job-description" placeholder="Enter Job Description"></textarea>
+            <button id="recommend-button">Get Recommendation</button>
+        </section>
+        <section class="result-section">
+            <h2>Recommendation Result:</h2>
+            <div id="recommendation-result"></div>
+        </section>
+        <section class="feedback-section">
+            <h2>Submit Feedback</h2>
+            <input type="text" id="user-email" placeholder="Your Email">
+            <textarea id="user-feedback" placeholder="Your Feedback"></textarea>
+            <button id="submit-feedback">Submit Feedback</button>
+        </section>
     </main>
-    <footer>
-        <h2>Submit Feedback</h2>
-        <input type="email" id="userEmail" placeholder="Your email address" />
-        <textarea id="userFeedback" placeholder="Your feedback..."></textarea>
-        <button id="submitFeedbackButton">Submit Feedback</button>
-        <div id="feedbackDisplay"></div>
-    </footer>
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
