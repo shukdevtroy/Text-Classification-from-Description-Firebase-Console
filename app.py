@@ -81,4 +81,6 @@ if st.button("Get Recommendation"):
     else:
         st.write("Please enter a description.")
 
+# WhatsApp contact info
+st.write("For further assistance, contact us on WhatsApp: [Click here to chat](https://wa.me/+8801719296601)")
 
