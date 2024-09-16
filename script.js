@@ -1,16 +1,15 @@
-function recommendJob() {
-    const description = document.getElementById('description').value;
-    
-    if (description) {
-        // For now, just display a simple message.
-        // In real implementation, you would call your backend API here.
-        document.getElementById('output').innerText = 'Recommendation logic is not yet implemented.';
-    } else {
-        document.getElementById('output').innerText = 'Please enter a job description.';
-    }
-}
+const jobDescriptions = [
+    "Software Engineer with experience in Python and machine learning.",
+    "Data Scientist with strong background in statistics and data analysis.",
+    "Web Developer skilled in JavaScript and front-end frameworks.",
+    // Add your job descriptions here
+];
 
-function refresh() {
-    document.getElementById('description').value = '';
-    document.getElementById('output').innerText = '';
+function getRecommendation() {
+    const description = document.getElementById('description').value;
+    const result = recommendJob(description, jobDescriptions);
+    
+    document.getElementById('jobTitle').innerText = "Recommended Job:";
+    document.getElementById('jobDescription').innerText = result.description;
+    document.getElementById('similarity').innerText = `Similarity: ${result.similarity.toFixed(2)}`;
 }
