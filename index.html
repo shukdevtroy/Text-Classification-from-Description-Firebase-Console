@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Description Recommender</title>
+    <title>Job Recommendation</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Job Description Recommender</h1>
-        <textarea id="description" placeholder="Enter Job Description..."></textarea>
-        <button id="recommendBtn">Get Recommendation</button>
-        <textarea id="output" readonly></textarea>
-    </div>
+    <h1>Job Position Recommender</h1>
+    <textarea id="description" placeholder="Enter Job Description..."></textarea>
+    <button onclick="recommendJob()">Get Recommendation</button>
+    <button onclick="refresh()">Refresh</button>
+    <p id="output"></p>
+
     <script src="script.js"></script>
 </body>
 </html>
