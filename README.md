@@ -57,7 +57,13 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
    from google.colab import drive
    drive.mount('/content/drive/')
    ```
-4. **Run the app**
+   
+4. **Install the libraries**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+5. **Run the app**
    ```bash
    streamlit run app.py
    ```
