@@ -121,7 +121,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For any questions or issues, please contact:
 
 - **Email**: shukdevdatta@gmail.com
-- **GitHub**: [yourusername](https://github.com/shukdevtroy)
+- **GitHub**: [Click to here to access the Github Profile](https://github.com/shukdevtroy)
 - **WhatsApp**: [Click here to chat](https://wa.me/+8801719296601)
 
 ---
