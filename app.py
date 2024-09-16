@@ -1,4 +1,5 @@
 # streamlit app
+!pip install --upgrade firebase-admin
 import streamlit as st
 import joblib
 import numpy as np
