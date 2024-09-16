@@ -89,11 +89,16 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
 
 1. **Firebase Setup**
 
-   Ensure that Firebase is configured with your project. The service account JSON file should be correctly set up and accessible.
+-   Ensure that Firebase is configured with your project. The service account JSON file should be correctly set up and accessible.
+-   Go to [Firebase Console Sign in](https://console.firebase.google.com/u/0/)
+-   Click Create a project
+-   After that click on `Build` and then `Realtime Database`
+   
 
 2. **Database Rules**
 
-   Update your Firebase Realtime Database rules to allow read and write operations as required.
+-   ![Example Image](https://github.com/shukdevtroy/Text-Classification-from-Description-Firebase-Console/blob/main/images/Configuration of Firebase console.JPG)
+-   
 
 ## Contributing
 
