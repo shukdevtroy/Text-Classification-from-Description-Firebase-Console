@@ -36,8 +36,8 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
    Clone the repository to your local machine or Google Colab environment.
 
    ```bash
-   git clone https://github.com/yourusername/job-description-recommendation.git
-   cd job-description-recommendation
+   git clone https://github.com/shukdevtroy/Text-Classification-from-Description-Firebase-Console.git
+   cd Text-Classification-from-Description-Firebase-Console
    ```
 
 2. **Upload Files**
@@ -107,9 +107,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For any questions or issues, please contact:
 
-- **Email**: your.email@example.com
-- **GitHub**: [yourusername](https://github.com/yourusername)
+- **Email**: shukdevdatta@gmail.com
+- **GitHub**: [yourusername](https://github.com/shukdevtroy)
+- **WhatsApp**: [Click here to chat](https://wa.me/+8801719296601)
 
 ---
 
 Feel free to adjust the paths, filenames, and contact details as per your specific project setup and requirements.
+
