@@ -45,7 +45,7 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
    Ensure you have the following files uploaded to your Google Drive or working directory:
 
    - Job description dataset (`Job Description.XLSX`)
-   - Firebase service account key JSON file (`feedback-job-recommendation-firebase-adminsdk-n6zig-3863863b60.json`)
+   - Firebase service account key JSON file 
 
    Update the paths in the code accordingly.
 
@@ -97,8 +97,12 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
 
 2. **Database Rules**
 
--   ![Example Image](https://github.com/shukdevtroy/Text-Classification-from-Description-Firebase-Console/blob/main/images/Configuration%20of%20Firebase%20console.png)
--   
+![Example Image](https://github.com/shukdevtroy/Text-Classification-from-Description-Firebase-Console/blob/main/images/Configuration%20of%20Firebase%20console.png)
+
+-   Click on `Project Overview Setting icon` and then `Project Settings`
+-   Click on `Service accounts` and then select python `Project Settings` and click on `Generate new private key`
+-   Save the json file in your project directory
+-   Click on `Realtime Database`and copy the database url
 
 ## Contributing
 
