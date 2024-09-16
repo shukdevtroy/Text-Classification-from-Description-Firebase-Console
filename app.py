@@ -93,10 +93,14 @@ def submit_feedback(email, feedback):
 
 def submit_job_data(description, job_title):
     if description and job_title:
-        job_data_ref.push({
-            'job_description': description,
-            'job_title': job_title
-        })
+        try:
+            job_data_ref.push({
+                'job_description': description,
+                'job_title': job_title
+            })
+            st.success("Job data submitted successfully!")
+        except Exception as e:
+            st.error(f"An error occurred while submitting job data: {e}")
 
 
 # Streamlit app
