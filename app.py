@@ -110,8 +110,8 @@ if st.button("Get Recommendation"):
         st.write(f"Similarity: {similarity:.2%}")
         st.write(f"Job Position Recommended: {job_title}")
 
-        # Save job description and job title to Firebase
-        submit_job_data(description, job_title)
+        # # Save job description and job title to Firebase
+        # submit_job_data(description, job_title)
     else:
         st.write("Please enter a description.")
 
