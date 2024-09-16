@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.container {
+    margin: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button#recommendBtn {
+    background-color: #7CF5FF;
+}
+
+button#refreshBtn {
+    background-color: #FFFBE6;
+}
+
+button#submitFeedbackBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#feedback-display-section {
+    margin-top: 20px;
+}
+
+#feedbackDisplay {
+    height: 300px;
+}
