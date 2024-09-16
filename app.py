@@ -59,22 +59,22 @@ tfidf_vectorizer = TfidfVectorizer(tokenizer=my_tokenizer)
 loaded_tfidf_vectorizer = joblib.load('tfidf_vectorizer_model.joblib')
 loaded_tfidf_matrix = joblib.load('tfidf_matrix_model.joblib')
 
-# # Initialize Firebase
-# try:
-#     firebase_admin.get_app()  # Check if Firebase app is already initialized
-# except ValueError:
-#     # If not initialized, initialize it
-#     cred = credentials.Certificate(
-#         'job-desc-recom-firebase-adminsdk-84fxf-bcfeae1995.json'
-#     )  # Update path as needed
-#     firebase_admin.initialize_app(
-#         cred, {
-#             'databaseURL':
-#             'https://job-desc-recom-default-rtdb.firebaseio.com'
-#         })
+# Initialize Firebase
+try:
+    firebase_admin.get_app()  # Check if Firebase app is already initialized
+except ValueError:
+    # If not initialized, initialize it
+    cred = credentials.Certificate(
+        'job-desc-recom-firebase-adminsdk-84fxf-bcfeae1995.json'
+    )  # Update path as needed
+    firebase_admin.initialize_app(
+        cred, {
+            'databaseURL':
+            'https://job-desc-recom-default-rtdb.firebaseio.com'
+        })
 
-# feedback_ref = db.reference('/feedback')
-# job_data_ref = db.reference('/job_data')
+feedback_ref = db.reference('/feedback')
+job_data_ref = db.reference('/job_data')
 
 
 def recommend_job(description):
@@ -85,17 +85,17 @@ def recommend_job(description):
         'Job Description'], dfp.iloc[max_similarity]['Job Title']
 
 
-# def submit_feedback(email, feedback):
-#     if email and feedback:
-#         feedback_ref.push({'user_email': email, 'feedback': feedback})
+def submit_feedback(email, feedback):
+    if email and feedback:
+        feedback_ref.push({'user_email': email, 'feedback': feedback})
 
 
-# def submit_job_data(description, job_title):
-#     if description and job_title:
-#         job_data_ref.push({
-#             'job_description': description,
-#             'job_title': job_title
-#         })
+def submit_job_data(description, job_title):
+    if description and job_title:
+        job_data_ref.push({
+            'job_description': description,
+            'job_title': job_title
+        })
 
 
 # Streamlit app
@@ -110,18 +110,18 @@ if st.button("Get Recommendation"):
         st.write(f"Similarity: {similarity:.2%}")
         st.write(f"Job Position Recommended: {job_title}")
 
-        # # Save job description and job title to Firebase
-        # submit_job_data(description, job_title)
+        # Save job description and job title to Firebase
+        submit_job_data(description, job_title)
     else:
         st.write("Please enter a description.")
 
-# # Feedback form
-# st.subheader("Submit Feedback")
-# feedback_email = st.text_input("Your Email Address:")
-# feedback_text = st.text_area("Your Feedback:")
-# if st.button("Submit Feedback"):
-#     if feedback_email and feedback_text:
-#         submit_feedback(feedback_email, feedback_text)
-#         st.write("Thank you for your feedback!")
-#     else:
-#         st.write("Please enter both your email and feedback.")
+# Feedback form
+st.subheader("Submit Feedback")
+feedback_email = st.text_input("Your Email Address:")
+feedback_text = st.text_area("Your Feedback:")
+if st.button("Submit Feedback"):
+    if feedback_email and feedback_text:
+        submit_feedback(feedback_email, feedback_text)
+        st.write("Thank you for your feedback!")
+    else:
+        st.write("Please enter both your email and feedback.")
