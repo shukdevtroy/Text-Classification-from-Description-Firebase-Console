@@ -97,7 +97,7 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
 
 2. **Database Rules**
 
--   ![Example Image](https://github.com/shukdevtroy/Text-Classification-from-Description-Firebase-Console/blob/main/images/Configuration of Firebase console.JPG)
+-   ![Example Image](https://github.com/shukdevtroy/Text-Classification-from-Description-Firebase-Console/tree/main/images)
 -   
 
 ## Contributing
