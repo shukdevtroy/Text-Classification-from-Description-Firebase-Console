@@ -70,7 +70,7 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
 
 ## Demo App
 
-[Firebase Console Sign in](https://jobrecommender007.streamlit.app/)
+[Demo App Link](https://jobrecommender007.streamlit.app/)
 
 
 ## Usage
