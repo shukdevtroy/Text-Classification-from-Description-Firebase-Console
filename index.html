@@ -9,10 +9,20 @@
 <body>
     <div class="container">
         <h1>Job Description Recommender</h1>
+
         <textarea id="jobDescription" placeholder="Enter Job Description..."></textarea>
         <button id="recommendButton">Get Recommendation</button>
         <div id="output"></div>
+
+        <h2>Submit Feedback</h2>
+        <input type="text" id="userEmail" placeholder="User Email Address"/>
+        <textarea id="userFeedback" placeholder="Feedback..."></textarea>
+        <button id="submitFeedbackButton">Submit Feedback</button>
+
+        <h2>Previous Feedbacks</h2>
+        <textarea id="feedbackDisplay" disabled></textarea>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
