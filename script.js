@@ -1,17 +1,16 @@
-document.getElementById('recommendBtn').addEventListener('click', function() {
-    var description = document.getElementById('description').value;
-    var output = document.getElementById('output');
-
-    if (!description) {
-        output.value = 'Please enter a description of the job.';
-        return;
+function recommendJob() {
+    const description = document.getElementById('description').value;
+    
+    if (description) {
+        // For now, just display a simple message.
+        // In real implementation, you would call your backend API here.
+        document.getElementById('output').innerText = 'Recommendation logic is not yet implemented.';
+    } else {
+        document.getElementById('output').innerText = 'Please enter a job description.';
     }
+}
 
-    // Simulated recommendation logic
-    var closestDescription = 'Simulated closest description for: ' + description;
-    var similarity = Math.random().toFixed(2); // Simulated similarity score
-
-    output.value = `Closest Description found: ${closestDescription}\n` +
-                   `Similarity: ${similarity * 100}%\n` +
-                   'Job Position Recommended: Simulated Job Title';
-});
+function refresh() {
+    document.getElementById('description').value = '';
+    document.getElementById('output').innerText = '';
+}
