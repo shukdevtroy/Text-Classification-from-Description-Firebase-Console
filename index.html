@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Recommendation App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Job Recommendation App</h1>
+    </header>
+    
+    <main>
+        <div class="container">
+            <textarea id="description" placeholder="Enter Job Description..."></textarea>
+            <button id="recommendBtn">Get Job Recommendation</button>
+            <button id="refreshBtn">Refresh</button>
+            <textarea id="output" readonly></textarea>
+        </div>
+        
+        <section id="feedback-section">
+            <h2>Submit Feedback</h2>
+            <input type="text" id="user-email" placeholder="Your Email">
+            <textarea id="feedback-text" placeholder="Your Feedback..."></textarea>
+            <button id="submitFeedbackBtn">Submit Feedback</button>
+        </section>
+        
+        <section id="feedback-display-section">
+            <h2>Previous Feedbacks</h2>
+            <textarea id="feedbackDisplay" readonly></textarea>
+        </section>
+    </main>
 
+    <script src="scripts.js"></script>
+</body>
+</html>
