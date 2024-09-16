@@ -68,6 +68,11 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
    streamlit run app.py
    ```
 
+## Demo App
+
+[Firebase Console Sign in](https://jobrecommender007.streamlit.app/)
+
+
 ## Usage
 
 1. **Run Initialization Cells**
