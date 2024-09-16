@@ -1,60 +1,52 @@
-document.getElementById('recommendButton').addEventListener('click', function() {
-    const description = document.getElementById('jobDescription').value;
+document.addEventListener('DOMContentLoaded', function() {
+    const recommendButton = document.getElementById('recommend-button');
+    const submitFeedbackButton = document.getElementById('submit-feedback');
+    const jobDescriptionTextarea = document.getElementById('job-description');
+    const recommendationResultDiv = document.getElementById('recommendation-result');
+    const userEmailInput = document.getElementById('user-email');
+    const userFeedbackTextarea = document.getElementById('user-feedback');
 
-    fetch('https://feedback-job-recommendation-default-rtdb.firebaseio.com/job_data', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ jobDescription: description })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('recommendationOutput').innerText = 
-            `Closest Description found: ${data.closest_description}\n` +
-            `Similarity: ${data.similarity}\n` +
-            `Job Position Recommended: ${data.job_title}`;
-    })
-    .catch(error => console.error('Error:', error));
+    recommendButton.addEventListener('click', function() {
+        const jobDescription = jobDescriptionTextarea.value.trim();
+        if (jobDescription) {
+            // Simulate server response
+            simulateRecommendation(jobDescription);
+        } else {
+            recommendationResultDiv.innerHTML = 'Please enter a job description.';
+        }
+    });
+
+    submitFeedbackButton.addEventListener('click', function() {
+        const email = userEmailInput.value.trim();
+        const feedback = userFeedbackTextarea.value.trim();
+        if (email && feedback) {
+            // Simulate feedback submission
+            submitFeedback(email, feedback);
+        } else {
+            alert('Please provide both email and feedback.');
+        }
+    });
+
+    function simulateRecommendation(description) {
+        // Simulated response
+        const simulatedResponse = {
+            closestDescription: 'We found a matching job description...',
+            similarity: '85%',
+            jobTitle: 'Business Intelligence Developer'
+        };
+
+        recommendationResultDiv.innerHTML = `
+            <p>Closest Description found: ${simulatedResponse.closestDescription}</p>
+            <p>Similarity: ${simulatedResponse.similarity}</p>
+            <p>Job Position Recommended: ${simulatedResponse.jobTitle}</p>
+        `;
+    }
+
+    function submitFeedback(email, feedback) {
+        // Simulate feedback submission
+        console.log(`Feedback from ${email}: ${feedback}`);
+        alert('Thank you for your feedback!');
+        userEmailInput.value = '';
+        userFeedbackTextarea.value = '';
+    }
 });
-
-document.getElementById('refreshButton').addEventListener('click', function() {
-    document.getElementById('jobDescription').value = '';
-    document.getElementById('recommendationOutput').innerText = '';
-});
-
-document.getElementById('submitFeedbackButton').addEventListener('click', function() {
-    const email = document.getElementById('userEmail').value;
-    const feedback = document.getElementById('userFeedback').value;
-
-    fetch('https://feedback-job-recommendation-default-rtdb.firebaseio.com/feedback', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ user_email: email, feedback: feedback })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('feedbackDisplay').innerText = 'Thank you for your feedback!';
-    })
-    .catch(error => console.error('Error:', error));
-});
-
-// Function to load feedback
-function loadFeedback() {
-    fetch('https://feedback-job-recommendation-default-rtdb.firebaseio.com/feedback')
-    .then(response => response.json())
-    .then(data => {
-        let feedbackText = '';
-        data.forEach(feedback => {
-            feedbackText += `Email: ${feedback.user_email}\nFeedback: ${feedback.feedback}\n\n`;
-        });
-        document.getElementById('feedbackDisplay').innerText = feedbackText || 'No feedback available.';
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-// Load feedback on page load
-loadFeedback();
-
