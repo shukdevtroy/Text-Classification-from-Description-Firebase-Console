@@ -1,0 +1,127 @@
+import streamlit as st
+import joblib
+import numpy as np
+import string
+from sklearn.metrics.pairwise import cosine_similarity
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+from nltk.corpus import wordnet
+from nltk import pos_tag
+from sklearn.feature_extraction.text import TfidfVectorizer
+import nltk
+import firebase_admin
+from firebase_admin import credentials, db
+
+import pandas as pd
+
+# Load your job data
+dfp = pd.read_excel('Job Description.XLSX')  # Update with the correct path to your data file
+
+# Download necessary NLTK data
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('punkt_tab')
+nltk.download('averaged_perceptron_tagger_eng')
+
+# Define the tokenizer function
+stopwords_list = stopwords.words('english')
+lemmatizer = WordNetLemmatizer()
+
+
+def my_tokenizer(doc):
+    words = word_tokenize(doc)
+    pos_tags = pos_tag(words)
+    non_stopwords = [w for w in pos_tags if not w[0].lower() in stopwords_list]
+    non_punctuation = [
+        w for w in non_stopwords if not w[0] in string.punctuation
+    ]
+    lemmas = []
+    for w in non_punctuation:
+        if w[1].startswith('J'):
+            pos = wordnet.ADJ
+        elif w[1].startswith('V'):
+            pos = wordnet.VERB
+        elif w[1].startswith('N'):
+            pos = wordnet.NOUN
+        elif w[1].startswith('R'):
+            pos = wordnet.ADV
+        else:
+            pos = wordnet.NOUN
+        lemmas.append(lemmatizer.lemmatize(w[0], pos))
+    return lemmas
+
+
+# Load models
+tfidf_vectorizer = TfidfVectorizer(tokenizer=my_tokenizer)
+loaded_tfidf_vectorizer = joblib.load('tfidf_vectorizer_model.joblib')
+loaded_tfidf_matrix = joblib.load('tfidf_matrix_model.joblib')
+
+# Initialize Firebase
+try:
+    firebase_admin.get_app()  # Check if Firebase app is already initialized
+except ValueError:
+    # If not initialized, initialize it
+    cred = credentials.Certificate(
+        'feedback-job-recommendation-firebase-adminsdk-n6zig-3863863b60.json'
+    )  # Update path as needed
+    firebase_admin.initialize_app(
+        cred, {
+            'databaseURL':
+            'https://feedback-job-recommendation-default-rtdb.firebaseio.com/'
+        })
+
+feedback_ref = db.reference('/feedback')
+job_data_ref = db.reference('/job_data')
+
+
+def recommend_job(description):
+    query_vect = loaded_tfidf_vectorizer.transform([description])
+    similarity = cosine_similarity(query_vect, loaded_tfidf_matrix)
+    max_similarity = np.argmax(similarity, axis=None)
+    return similarity[0, max_similarity], dfp.iloc[max_similarity][
+        'Job Description'], dfp.iloc[max_similarity]['Job Title']
+
+
+def submit_feedback(email, feedback):
+    if email and feedback:
+        feedback_ref.push({'user_email': email, 'feedback': feedback})
+
+
+def submit_job_data(description, job_title):
+    if description and job_title:
+        job_data_ref.push({
+            'job_description': description,
+            'job_title': job_title
+        })
+
+
+# Streamlit app
+st.title("Job Recommendation System")
+
+# Job description input and recommendation
+description = st.text_area("Enter Job Description:")
+if st.button("Get Recommendation"):
+    if description:
+        similarity, closest_description, job_title = recommend_job(description)
+        st.write(f"Closest Description found: {closest_description}")
+        st.write(f"Similarity: {similarity:.2%}")
+        st.write(f"Job Position Recommended: {job_title}")
+
+        # Save job description and job title to Firebase
+        submit_job_data(description, job_title)
+    else:
+        st.write("Please enter a description.")
+
+# Feedback form
+st.subheader("Submit Feedback")
+feedback_email = st.text_input("Your Email Address:")
+feedback_text = st.text_area("Your Feedback:")
+if st.button("Submit Feedback"):
+    if feedback_email and feedback_text:
+        submit_feedback(feedback_email, feedback_text)
+        st.write("Thank you for your feedback!")
+    else:
+        st.write("Please enter both your email and feedback.")
