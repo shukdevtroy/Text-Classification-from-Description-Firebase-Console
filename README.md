@@ -58,7 +58,7 @@ pip install pandas numpy nltk scikit-learn ipywidgets firebase-admin
    drive.mount('/content/drive/')
    ```
 4. **Run the app**
-   ```bash
+```bash
 streamlit run app.py
 ```
 
